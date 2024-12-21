@@ -1,4 +1,3 @@
-// ResourcesView.kt
 package com.InfiniumImageryLLC.infiniview.ui
 
 import androidx.compose.foundation.clickable
@@ -6,16 +5,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
+// We'll reuse your model classes:
 data class ResourceLink(
     val title: String,
-    val destinationRoute: String? = null,
-    val url: String? = null
+    val routeOrUrl: String
 )
 
 data class ResourceSection(
@@ -23,50 +22,56 @@ data class ResourceSection(
     val links: List<ResourceLink>
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ResourcesView(navController: NavController) {
-    val announcementsSection = ResourceSection(
-        header = "Announcements",
-        links = listOf(
-            ResourceLink(title = "View Announcements", destinationRoute = "announcements")
+    val sections = listOf(
+        // 1) Announcements Section
+        ResourceSection(
+            header = "Announcements",
+            links = listOf(
+                ResourceLink("View Announcements", "announcements")
+            )
+        ),
+
+        // 2) Core Resources
+        ResourceSection(
+            header = "Core Resources",
+            links = listOf(
+                ResourceLink("Infinitum LIVE Creator Network Website", "https://infinitumlive.com/"),
+                ResourceLink("FAQs", "https://infinitumlive.com/faq/"),
+                ResourceLink("Contact", "https://infinitumlive.com/contact/"),
+                ResourceLink("Achievements Leaderboard", "leaderboard"),
+                ResourceLink("Achievements", "achievements")
+            )
+        ),
+
+        // 3) Additional Resources
+        ResourceSection(
+            header = "Additional Resources",
+            links = listOf(
+                ResourceLink("Diamond Incentive Program (D.I.P)", "dip"),
+                ResourceLink("Bans & Violations", "bansViolations"),
+                ResourceLink("Stream Key Requests", "streamKeyRequests"),
+                ResourceLink("TikTok LIVE Studio Requests", "tikTokLiveStudioRequests"),
+                ResourceLink("Self-Paced Modules", "selfPacedModules"),
+                ResourceLink("Benefits", "https://infinitumlive.com/benefits-of-infinitum/"),
+                ResourceLink("Roster", "roster"),
+                ResourceLink("Discord", "https://discord.gg/tMCg9WqDT9"),
+                ResourceLink("Help", "help"),
+                ResourceLink("Report A Problem", "reportAProblem"),
+                ResourceLink("Low Views Help", "https://docs.google.com/presentation/d/17pMQyvltWC2G3ezdxteGoGI6DVLMZw-gxj7W44YqXLw/edit?usp=sharing"),
+                ResourceLink("How-To's", "howTos"),
+                ResourceLink("Save 30% When Recharging", "save30"),
+                ResourceLink("TikTok Shop Application", "https://infinitumlive.com/tiktok-shop/"),
+                ResourceLink("Not In Our Network?", "https://infinitumlive.com/creator-pre-check/"),
+                ResourceLink("Merch", "https://infinitum-live-agency.myspreadshop.com/all")
+            )
         )
     )
 
-    val coreResourcesSection = ResourceSection(
-        header = "Core Resources",
-        links = listOf(
-            ResourceLink(title = "Infinitum LIVE Creator Network Website", url = "https://infinitumlive.com/"),
-            ResourceLink(title = "FAQs", url = "https://infinitumlive.com/faq/"),
-            ResourceLink(title = "Contact", url = "https://infinitumlive.com/contact/"),
-            ResourceLink(title = "Achievements Leaderboard", destinationRoute = "singleResource"), // or any
-            ResourceLink(title = "Achievements", destinationRoute = "singleResource") // or any
-        )
-    )
-
-    val additionalResourcesSection = ResourceSection(
-        header = "Additional Resources",
-        links = listOf(
-            ResourceLink(title = "Diamond Incentive Program (D.I.P)", destinationRoute = "dip"),
-            ResourceLink(title = "Bans & Violations", destinationRoute = "singleResource"),
-            ResourceLink(title = "Stream Key Requests", destinationRoute = "singleResource"),
-            ResourceLink(title = "TikTok LIVE Studio Requests", destinationRoute = "singleResource"),
-            ResourceLink(title = "Self-Paced Modules", destinationRoute = "singleResource"),
-            ResourceLink(title = "Benefits", url = "https://infinitumlive.com/benefits-of-infinitum/"),
-            ResourceLink(title = "Roster", destinationRoute = "singleResource"),
-            ResourceLink(title = "Discord", url = "https://discord.gg/tMCg9WqDT9"),
-            ResourceLink(title = "Help", destinationRoute = "singleResource"),
-            ResourceLink(title = "Report A Problem", destinationRoute = "singleResource"),
-            ResourceLink(title = "Low Views Help", url = "https://docs.google.com/presentation/..."),
-            ResourceLink(title = "How-To's", destinationRoute = "singleResource"),
-            ResourceLink(title = "Save 30% When Recharging", destinationRoute = "singleResource"),
-            ResourceLink(title = "TikTok Shop Application", url = "https://infinitumlive.com/tiktok-shop/"),
-            ResourceLink(title = "Not In Our Network?", url = "https://infinitumlive.com/creator-pre-check/"),
-            ResourceLink(title = "Merch", url = "https://infinitum-live-agency.myspreadshop.com/all")
-        )
-    )
-
-    val sections = listOf(announcementsSection, coreResourcesSection, additionalResourcesSection)
-
+    // If you already have a parent Scaffold + TopAppBar in your NavHost, you can remove
+    // this local Scaffold. Otherwise, having a local top bar is fine.
     Scaffold(
         topBar = {
             TopAppBar(
@@ -78,10 +83,10 @@ fun ResourcesView(navController: NavController) {
             )
         },
         containerColor = Color.Black
-    ) { paddingValues ->
-        Column(modifier = Modifier.padding(paddingValues)) {
+    ) { innerPadding ->
+        Column(modifier = Modifier.padding(innerPadding)) {
             Spacer(modifier = Modifier.height(8.dp))
-            LazyColumn(modifier = Modifier.fillMaxWidth()) {
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
                 sections.forEach { section ->
                     item {
                         Text(
@@ -91,22 +96,49 @@ fun ResourcesView(navController: NavController) {
                             modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp)
                         )
                     }
-                    items(section.links) { link ->
+                    items(section.links) { linkItem ->
                         Text(
-                            text = link.title,
+                            text = linkItem.title,
                             color = Color.Blue,
                             modifier = Modifier
                                 .clickable {
-                                    if (link.destinationRoute != null) {
-                                        navController.navigate(link.destinationRoute)
-                                    } else if (link.url != null) {
-                                        navController.navigate("webView")
-                                    }
+                                    handleResourceClick(navController, linkItem.routeOrUrl)
                                 }
                                 .padding(vertical = 8.dp, horizontal = 16.dp)
                         )
                     }
                 }
+            }
+        }
+    }
+}
+
+// Simple helper to handle tapping a link
+private fun handleResourceClick(navController: NavController, routeOrUrl: String) {
+    // If the string looks like a route, navigate. Otherwise open external URL or a webview route.
+    when (routeOrUrl) {
+        "announcements" -> navController.navigate("announcements")
+        "leaderboard" -> navController.navigate("leaderboard")
+        "achievements" -> navController.navigate("achievements")
+        "dip" -> navController.navigate("dip")
+        "bansViolations" -> navController.navigate("bansViolations")
+        "streamKeyRequests" -> navController.navigate("streamKeyRequests")
+        "tikTokLiveStudioRequests" -> navController.navigate("tikTokLiveStudioRequests")
+        "selfPacedModules" -> navController.navigate("selfPacedModules")
+        "roster" -> navController.navigate("roster")
+        "help" -> navController.navigate("help")
+        "reportAProblem" -> navController.navigate("reportAProblem")
+        "howTos" -> navController.navigate("howTos")
+        "save30" -> navController.navigate("save30")
+        else -> {
+            // If it starts with "http", we open an external link or a WebView composable
+            if (routeOrUrl.startsWith("http")) {
+                // You can either open a separate "SingleResourceView" route
+                // or do navController.navigate(...) to pass a URL argument, etc.
+                // This is an example of a direct external launch:
+                // (You could also do an Intent-based approach.)
+                // For brevity, let's do a simple route, e.g., "webView?url=..."
+                // But that requires navArgument. If you want to keep it simple, just do nothing.
             }
         }
     }

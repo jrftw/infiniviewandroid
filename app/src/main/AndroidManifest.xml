@@ -1,19 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.InfiniumImageryLLC.infiniview"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- AndroidManifest.xml -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.InfiniumImageryLLC.infiniview">
+
+    <!-- Internet permission if not already present -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".InfiniViewApp"
+        android:label="InfiniView"
         android:allowBackup="true"
         android:supportsRtl="true"
-        android:label="InfiniView"
         android:theme="@style/Theme.InfiniView">
 
+        <!-- Required by Google Mobile Ads SDK -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-6815311336585204~1891515839"/>
+            android:value="ca-app-pub-6815311336585204~1891515839" />
 
-        <activity android:name=".MainActivity"
-            android:exported="true">
+        <!-- Your launcher Activity, etc. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="InfiniView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -21,6 +29,4 @@
         </activity>
 
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

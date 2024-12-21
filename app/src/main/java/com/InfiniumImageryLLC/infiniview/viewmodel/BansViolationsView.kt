@@ -1,4 +1,5 @@
-// BansViolationsView.kt
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.InfiniumImageryLLC.infiniview.ui
 
 import androidx.compose.foundation.clickable
@@ -34,8 +35,8 @@ fun BansViolationsView(navController: NavController) {
     ) { innerPadding ->
         Surface(
             modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxWidth(),
+                .fillMaxSize()
+                .padding(innerPadding),
             color = Color.Black
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
@@ -47,20 +48,18 @@ fun BansViolationsView(navController: NavController) {
                 Spacer(Modifier.height(10.dp))
                 Text(
                     """
-                    Did you actually violate community guidelines?
-                    Did you use a word not to say?
-                    Did someone else in your LIVE say something they were not supposed to?
+Did you actually violate community guidelines?
+Did you use a word not to say?
+Did someone else in your LIVE say something they were not supposed to?
 
-                    If yes, do not submit an appeal with us as it will be unsuccessful.
+If yes, do not submit an appeal with us as it will be unsuccessful.
 
-                    1. Appeal In-App
-                    2. If your appeal was successful and restored you are all set. If not, screenshot the appeal not restored and then appeal your violation with us. Check back for updates.
+1. Appeal In-App
+2. If your appeal was successful and restored you are all set. If not, screenshot the appeal not restored and then appeal your violation with us. Check back for updates.
                     """.trimIndent(),
                     color = Color.White
                 )
-
                 Spacer(Modifier.height(20.dp))
-
                 Text(
                     "Open Bans & Violations Form",
                     color = Color.Blue,

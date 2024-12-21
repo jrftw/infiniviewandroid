@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    // (Optional) Add more if needed (e.g. Hilt, etc.)
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
+    // (Add more if needed, e.g., Hilt)
 }
 
 android {
@@ -12,13 +13,9 @@ android {
         applicationId = "com.InfiniumImageryLLC.infiniview"
         minSdk = 24
         targetSdk = 34
-
         versionCode = 2
         versionName = "1.01"
-
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -29,14 +26,12 @@ android {
                 "proguard-rules.pro"
             )
         }
-        // debug { ... } // Usually auto-created if not overridden
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -46,7 +41,6 @@ android {
     }
 
     composeOptions {
-        // Match the Compose compiler to your Compose UI version
         kotlinCompilerExtensionVersion = "1.5.3"
     }
 
@@ -55,17 +49,19 @@ android {
     }
 }
 
-// For clarity, define or inline your Compose/m3 versions:
+// Versions:
 val composeUiVersion = "1.5.1"
 val material3Version = "1.1.1"
+val coilVersion = "2.3.0"
+val okHttpVersion = "4.10.0"
 
 dependencies {
-
-    // Core & Lifecycle
+    // Core
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
-    // Activity + Jetpack Compose
+
+    // Compose
     implementation("androidx.activity:activity-compose:1.7.2")
     implementation("androidx.compose.ui:ui:$composeUiVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeUiVersion")
@@ -76,13 +72,13 @@ dependencies {
     // Icons
     implementation("androidx.compose.material:material-icons-extended:$composeUiVersion")
 
-    // Navigation for Compose
+    // Navigation (Compose)
     implementation("androidx.navigation:navigation-compose:2.7.2")
 
     // Accompanist WebView
     implementation("com.google.accompanist:accompanist-webview:0.30.1")
 
-    // Android's Material library (classic Views)
+    // Material Views
     implementation("com.google.android.material:material:1.9.0")
 
     // Google Play services Ads
@@ -91,13 +87,19 @@ dependencies {
     // JSON serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
-    // Logging (Timber)
+    // Logging (Timber or others)
     implementation("com.jakewharton.timber:timber:5.0.1")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
-    // Debugging (Compose tooling)
+    // Coil (image loading)
+    implementation("io.coil-kt:coil-compose:$coilVersion")
+
+    // OkHttp (network)
+    implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
+
+    // Debugging (Compose)
     debugImplementation("androidx.compose.ui:ui-tooling:$composeUiVersion")
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeUiVersion")
 }
