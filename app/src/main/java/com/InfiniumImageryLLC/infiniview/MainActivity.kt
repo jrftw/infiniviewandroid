@@ -1,4 +1,4 @@
-package com.InfiniumImageryLLC.infiniview
+package com.InfiniumImageryLLC.InfiniView
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

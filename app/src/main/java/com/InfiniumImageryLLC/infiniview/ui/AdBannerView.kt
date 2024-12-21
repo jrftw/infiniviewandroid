@@ -1,4 +1,4 @@
-package com.InfiniumImageryLLC.infiniview.ui
+package com.InfiniumImageryLLC.InfiniView.ui
 
 import android.widget.FrameLayout
 import androidx.compose.foundation.layout.height

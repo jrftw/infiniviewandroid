@@ -1,4 +1,4 @@
-package com.InfiniumImageryLLC.infiniview.ui
+package com.InfiniumImageryLLC.InfiniView.ui
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SmallTopAppBar

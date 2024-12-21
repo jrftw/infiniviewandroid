@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.InfiniumImageryLLC.infiniview.ui
+package com.InfiniumImageryLLC.InfiniView.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*

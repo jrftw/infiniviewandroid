@@ -1,5 +1,5 @@
 // InfiniViewApp.kt
-package com.InfiniumImageryLLC.infiniview
+package com.InfiniumImageryLLC.InfiniView
 
 import android.app.Application
 import com.google.android.gms.ads.MobileAds

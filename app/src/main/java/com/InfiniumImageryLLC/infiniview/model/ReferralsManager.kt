@@ -1,4 +1,4 @@
-package com.InfiniumImageryLLC.infiniview.model
+package com.InfiniumImageryLLC.InfiniView.model
 
 import android.content.Context
 

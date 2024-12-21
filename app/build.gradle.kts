@@ -1,37 +1,47 @@
+// app/build.gradle.kts
 plugins {
+    // For an Android application:
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
-    // (Add more if needed, e.g., Hilt)
+
+    // Kotlin Android plugin:
+    kotlin("android")
+
+    // Kotlin serialization plugin (version pinned at 1.9.10):
+    kotlin("plugin.serialization") version "1.9.10"
 }
 
 android {
-    namespace = "com.InfiniumImageryLLC.infiniview"
+    namespace = "com.InfiniumImageryLLC.InfiniView"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.InfiniumImageryLLC.infiniview"
+        applicationId = "com.InfiniumImageryLLC.InfiniView"
         minSdk = 24
         targetSdk = 34
         versionCode = 2
         versionName = "1.01"
-        vectorDrawables.useSupportLibrary = true
+
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
+        // (debug is created automatically)
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = "17"
     }
@@ -40,6 +50,7 @@ android {
         compose = true
     }
 
+    // Match Compose compiler with Kotlin 1.9.x → Compose Compiler 1.5.3
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.3"
     }
@@ -49,17 +60,17 @@ android {
     }
 }
 
-// Versions:
+// Adjust these versions as needed:
 val composeUiVersion = "1.5.1"
 val material3Version = "1.1.1"
 val coilVersion = "2.3.0"
 val okHttpVersion = "4.10.0"
 
 dependencies {
-    // Core
+
+    // Core & Lifecycle
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-
 
     // Compose
     implementation("androidx.activity:activity-compose:1.7.2")
@@ -78,25 +89,25 @@ dependencies {
     // Accompanist WebView
     implementation("com.google.accompanist:accompanist-webview:0.30.1")
 
-    // Material Views
+    // Material design library (classic Views)
     implementation("com.google.android.material:material:1.9.0")
 
     // Google Play services Ads
     implementation("com.google.android.gms:play-services-ads:22.0.0")
 
-    // JSON serialization
+    // Kotlin Serialization JSON
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
-    // Logging (Timber or others)
+    // Logging (e.g., Timber)
     implementation("com.jakewharton.timber:timber:5.0.1")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
-    // Coil (image loading)
+    // Coil for image loading
     implementation("io.coil-kt:coil-compose:$coilVersion")
 
-    // OkHttp (network)
+    // OkHttp for networking
     implementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
 
     // Debugging (Compose)

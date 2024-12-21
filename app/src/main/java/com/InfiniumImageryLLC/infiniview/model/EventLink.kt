@@ -1,4 +1,4 @@
-package com.InfiniumImageryLLC.infiniview.models
+package com.InfiniumImageryLLC.InfiniView.models
 
 import kotlinx.serialization.Serializable
 

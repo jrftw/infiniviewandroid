@@ -1,4 +1,4 @@
-package com.InfiniumImageryLLC.infiniview.ui
+package com.InfiniumImageryLLC.InfiniView.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,7 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.InfiniumImageryLLC.infiniview.viewmodel.LeaderboardViewModel
+import com.InfiniumImageryLLC.InfiniView.viewmodel.LeaderboardViewModel
 
 @Composable
 fun LeaderboardScreen(vm: LeaderboardViewModel = viewModel()) {

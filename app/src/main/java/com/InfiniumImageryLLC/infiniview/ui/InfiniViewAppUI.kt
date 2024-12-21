@@ -1,5 +1,4 @@
-package com.InfiniumImageryLLC.infiniview
-
+package com.InfiniumImageryLLC.InfiniView
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CalendarMonth
@@ -14,12 +13,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.InfiniumImageryLLC.infiniview.ui.AnnouncementsView
-import com.InfiniumImageryLLC.infiniview.ui.EventsView
-import com.InfiniumImageryLLC.infiniview.ui.ResourcesView
-import com.InfiniumImageryLLC.infiniview.ui.SettingsView
-import com.InfiniumImageryLLC.infiniview.ui.ScreenWithTopBar
-import com.InfiniumImageryLLC.infiniview.ui.WebViewScreen
+import com.InfiniumImageryLLC.InfiniView.ui.AnnouncementsView
+import com.InfiniumImageryLLC.InfiniView.ui.EventsView
+import com.InfiniumImageryLLC.InfiniView.ui.ResourcesView
+import com.InfiniumImageryLLC.InfiniView.ui.SettingsView
+import com.InfiniumImageryLLC.InfiniView.ui.ScreenWithTopBar
+import com.InfiniumImageryLLC.InfiniView.ui.WebViewScreen
 
 data class NavItem(
     val route: String,

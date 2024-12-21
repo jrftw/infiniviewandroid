@@ -1,9 +1,9 @@
-package com.InfiniumImageryLLC.infiniview.viewmodel
+package com.InfiniumImageryLLC.InfiniView.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.InfiniumImageryLLC.infiniview.model.ReferralsManager
+import com.InfiniumImageryLLC.InfiniView.model.ReferralsManager
 
 class ReferralsViewModel(app: Application): AndroidViewModel(app) {
     private val manager = ReferralsManager.getInstance(app)

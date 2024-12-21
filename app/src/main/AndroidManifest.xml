@@ -1,6 +1,6 @@
 <!-- AndroidManifest.xml -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.InfiniumImageryLLC.infiniview">
+    package="com.InfiniumImageryLLC.InfiniView">
 
     <!-- Internet permission if not already present -->
     <uses-permission android:name="android.permission.INTERNET" />

@@ -1,4 +1,4 @@
-package com.InfiniumImageryLLC.infiniview.ui
+package com.InfiniumImageryLLC.InfiniView.ui
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.fillMaxSize

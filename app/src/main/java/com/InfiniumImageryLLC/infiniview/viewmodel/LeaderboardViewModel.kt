@@ -1,10 +1,10 @@
-package com.InfiniumImageryLLC.infiniview.viewmodel
+package com.InfiniumImageryLLC.InfiniView.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.InfiniumImageryLLC.infiniview.model.LeaderboardEntry
-import com.InfiniumImageryLLC.infiniview.model.LeaderboardManager
+import com.InfiniumImageryLLC.InfiniView.model.LeaderboardEntry
+import com.InfiniumImageryLLC.InfiniView.model.LeaderboardManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

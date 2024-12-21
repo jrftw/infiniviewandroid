@@ -1,4 +1,4 @@
-package com.InfiniumImageryLLC.infiniview.tiktok
+package com.InfiniumImageryLLC.InfiniView.tiktok
 
 import android.content.Context
 import kotlinx.coroutines.Dispatchers

@@ -1,8 +1,8 @@
-package com.InfiniumImageryLLC.infiniview.ui
+package com.InfiniumImageryLLC.InfiniView.ui
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import com.InfiniumImageryLLC.infiniview.viewmodel.AdManagerViewModel
+import com.InfiniumImageryLLC.InfiniView.viewmodel.AdManagerViewModel
 
 @Composable
 fun MainTabView(adManagerViewModel: AdManagerViewModel) {

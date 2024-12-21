@@ -3,13 +3,12 @@ package com.InfiniumImageryLLC.InfiniView.models
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Event(
+data class Announcement(
     val id: Int,
     val title: String,
-    val startDate: String,
-    val endDate: String,
+    val date: String,
+    val time: String,
     val description: String,
-    val imageURL: String? = null,
-    val links: List<EventLink>? = null,
-    val isCompleted: Boolean
+    val image: String? = null,
+    val link: String? = null
 )

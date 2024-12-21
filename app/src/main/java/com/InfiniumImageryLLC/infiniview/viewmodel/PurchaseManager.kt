@@ -1,4 +1,4 @@
-package com.InfiniumImageryLLC.infiniview.viewmodel
+package com.InfiniumImageryLLC.InfiniView.viewmodel
 
 import androidx.lifecycle.ViewModel
 

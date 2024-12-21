@@ -1,11 +1,11 @@
-package com.InfiniumImageryLLC.infiniview.viewmodel
+package com.InfiniumImageryLLC.InfiniView.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.InfiniumImageryLLC.infiniview.model.Achievement
-import com.InfiniumImageryLLC.infiniview.model.AchievementsManager
+import com.InfiniumImageryLLC.InfiniView.model.Achievement
+import com.InfiniumImageryLLC.InfiniView.model.AchievementsManager
 
 class AchievementsViewModel(app: Application) : AndroidViewModel(app) {
     private val manager = AchievementsManager.getInstance(app)
