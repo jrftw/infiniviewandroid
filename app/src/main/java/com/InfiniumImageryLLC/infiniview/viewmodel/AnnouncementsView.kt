@@ -9,17 +9,14 @@ import androidx.compose.ui.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-
 import coil.compose.AsyncImage
+import com.InfiniumImageryLLC.InfiniView.models.Announcement
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
-
-// Make sure this import is here, matching the package from #1
-import com.InfiniumImageryLLC.InfiniView.models.Announcement
 
 @Composable
 fun AnnouncementsView() {
@@ -28,6 +25,7 @@ fun AnnouncementsView() {
     var errorMessage by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
+        // Example URL
         val url = "https://jrftw.github.io/InfiniView-Announcements/Announcements.json"
         try {
             val data = withContext(Dispatchers.IO) {
@@ -39,7 +37,7 @@ fun AnnouncementsView() {
             val decoded = Json.decodeFromString<List<Announcement>>(data)
             announcements = decoded
         } catch (e: Exception) {
-            errorMessage = "Failed to load announcements."
+            errorMessage = "Failed to load announcements: ${e.message}"
         } finally {
             loading = false
         }
@@ -90,6 +88,7 @@ fun AnnouncementsView() {
                                 text = announcement.description,
                                 style = MaterialTheme.typography.bodyMedium.copy(color = Color.White)
                             )
+
                             announcement.image?.takeIf { it.isNotEmpty() }?.let { imageUrl ->
                                 Spacer(modifier = Modifier.height(8.dp))
                                 AsyncImage(
@@ -107,6 +106,7 @@ fun AnnouncementsView() {
                                     color = Color.Cyan
                                 )
                             }
+
                             Spacer(modifier = Modifier.height(12.dp))
                         }
                     }

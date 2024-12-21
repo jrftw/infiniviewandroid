@@ -1,24 +1,14 @@
 package com.InfiniumImageryLLC.InfiniView
+
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.MenuBook
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.InfiniumImageryLLC.InfiniView.ui.AnnouncementsView
-import com.InfiniumImageryLLC.InfiniView.ui.EventsView
-import com.InfiniumImageryLLC.InfiniView.ui.ResourcesView
-import com.InfiniumImageryLLC.InfiniView.ui.SettingsView
-import com.InfiniumImageryLLC.InfiniView.ui.ScreenWithTopBar
-import com.InfiniumImageryLLC.InfiniView.ui.WebViewScreen
+import androidx.navigation.compose.*
+import com.InfiniumImageryLLC.InfiniView.ui.*
 
 data class NavItem(
     val route: String,
@@ -53,9 +43,9 @@ fun InfiniViewAppUI() {
                     containerColor = Color.Black,
                     contentColor = Color.White
                 ) {
-                    val currentRoute = navController.currentBackStackEntry?.destination?.route
+                    val currentDestination = navController.currentBackStackEntry?.destination
                     navItems.forEach { item ->
-                        val selected = (currentRoute == item.route)
+                        val selected = currentDestination?.route == item.route
                         NavigationBarItem(
                             selected = selected,
                             onClick = {
@@ -89,42 +79,118 @@ fun InfiniViewAppUI() {
                 startDestination = "home",
                 modifier = Modifier.padding(innerPadding)
             ) {
-                // “Home”
                 composable("home") {
                     ScreenWithTopBar("Home") {
-                        // A full-size WebView for the Home screen
+                        // Maybe a WebView or any home content:
                         WebViewScreen("https://view.infinitumlive.com/")
                     }
                 }
-
-                // “Resources”
                 composable("resources") {
-                    ScreenWithTopBar("Resources") {
-                        ResourcesView(navController)
-                    }
+                    // We pass navController to ResourcesView
+                    ResourcesView(navController)
                 }
-
-                // “Announcements” route that the ResourcesView can navigate to
-                composable("announcements") {
-                    ScreenWithTopBar("Announcements") {
-                        AnnouncementsView()
-                    }
-                }
-
-                // “Events”
                 composable("events") {
                     ScreenWithTopBar("Events") {
                         EventsView()
                     }
                 }
-
-                // “Settings”
                 composable("settings") {
                     ScreenWithTopBar("Settings") {
-                        SettingsView()
+                        // e.g. SettingsView()
+                        Text("Settings screen content", color = Color.White)
+                    }
+                }
+
+                // The routes from handleResourceClick:
+                composable("announcements") {
+                    ScreenWithTopBar("Announcements") {
+                        AnnouncementsView()
+                    }
+                }
+                composable("leaderboard") {
+                    ScreenWithTopBar("Leaderboard") {
+                        Text("Leaderboard Screen Goes Here", color = Color.White)
+                    }
+                }
+                composable("achievements") {
+                    ScreenWithTopBar("Achievements") {
+                        Text("Achievements Screen Goes Here", color = Color.White)
+                    }
+                }
+                composable("dip") {
+                    ScreenWithTopBar("D.I.P") {
+                        Text("Diamond Incentive Program Goes Here", color = Color.White)
+                    }
+                }
+                composable("bansViolations") {
+                    ScreenWithTopBar("Bans & Violations") {
+                        Text("BansViolationsView Goes Here", color = Color.White)
+                    }
+                }
+                composable("streamKeyRequests") {
+                    ScreenWithTopBar("Stream Key Requests") {
+                        Text("StreamKeyRequestsView Goes Here", color = Color.White)
+                    }
+                }
+                composable("tikTokLiveStudioRequests") {
+                    ScreenWithTopBar("TikTok LIVE Studio Requests") {
+                        Text("TikTokLIVEStudioRequestsView Goes Here", color = Color.White)
+                    }
+                }
+                composable("selfPacedModules") {
+                    ScreenWithTopBar("Self-Paced Modules") {
+                        Text("SelfPacedModulesView Goes Here", color = Color.White)
+                    }
+                }
+                composable("roster") {
+                    ScreenWithTopBar("Roster") {
+                        Text("RosterView Goes Here", color = Color.White)
+                    }
+                }
+                composable("help") {
+                    ScreenWithTopBar("Help") {
+                        Text("HelpView Goes Here", color = Color.White)
+                    }
+                }
+                composable("reportAProblem") {
+                    ScreenWithTopBar("Report A Problem") {
+                        Text("ReportAProblemView Goes Here", color = Color.White)
+                    }
+                }
+                composable("howTos") {
+                    ScreenWithTopBar("How-To's") {
+                        Text("HowTosView Goes Here", color = Color.White)
+                    }
+                }
+                composable("save30") {
+                    ScreenWithTopBar("Save 30%") {
+                        Text("Save30View Goes Here", color = Color.White)
                     }
                 }
             }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ScreenWithTopBar(title: String, content: @Composable () -> Unit) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(title, color = Color.White) },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Black)
+            )
+        },
+        containerColor = Color.Black
+    ) { innerPadding ->
+        Surface(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
+            color = Color.Black
+        ) {
+            content()
         }
     }
 }
